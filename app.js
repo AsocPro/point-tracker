@@ -210,6 +210,7 @@ class PointTracker {
         document.getElementById('numberPadPage').classList.remove('active');
         this.currentChild = null;
         this.clearTransaction();
+        this.renderChildren(); // Update the list to show new point totals
     }
 
     showNumberPadPage() {
