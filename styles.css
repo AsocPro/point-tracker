@@ -1,0 +1,566 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    overflow-x: hidden;
+}
+
+/* Page Management */
+.page {
+    display: none;
+    min-height: 100vh;
+}
+
+.page.active {
+    display: block;
+}
+
+/* Header */
+header {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    color: #667eea;
+    font-weight: 700;
+}
+
+.header-button {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 70px;
+    min-height: 44px;
+}
+
+.header-button:active {
+    transform: scale(0.95);
+    background: #5568d3;
+}
+
+.header-button.done {
+    background: #51cf66;
+}
+
+/* Children List */
+.children-list {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.child-item {
+    background: white;
+    border-radius: 15px;
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    min-height: 80px;
+    border-left: 6px solid;
+    cursor: pointer;
+}
+
+.child-item:active {
+    transform: scale(0.98);
+}
+
+.child-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.child-info h3 {
+    font-size: 1.25rem;
+    color: #333;
+}
+
+.child-info .points {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #667eea;
+}
+
+.child-controls {
+    display: none;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.edit-mode .child-controls {
+    display: flex;
+}
+
+.edit-mode .child-item {
+    cursor: default;
+}
+
+.control-button {
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.control-button:active {
+    transform: scale(0.9);
+}
+
+.delete-button {
+    background: #ff6b6b;
+    color: white;
+}
+
+.up-button, .down-button {
+    background: #667eea;
+    color: white;
+}
+
+.up-button:disabled, .down-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* Add Child Form */
+.add-child-form {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    margin: 0 1rem 1rem 1rem;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-child-form.hidden {
+    display: none;
+}
+
+.add-child-form input[type="text"] {
+    padding: 0.75rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    min-height: 44px;
+}
+
+.add-child-form input[type="color"] {
+    width: 100%;
+    height: 50px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.button-primary {
+    background: #51cf66;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 50px;
+}
+
+.button-primary:active {
+    transform: scale(0.98);
+    background: #40c057;
+}
+
+/* Number Pad Page */
+.child-header {
+    padding: 1.5rem;
+    color: white;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.back-button {
+    position: absolute;
+    left: 1rem;
+    top: 1.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid white;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    min-height: 44px;
+    min-width: 80px;
+}
+
+.back-button:active {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.child-header h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.current-points {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+/* Number Pad Container */
+.number-pad-container {
+    padding: 1rem;
+    background: white;
+    min-height: calc(100vh - 180px);
+    border-radius: 30px 30px 0 0;
+    margin-top: -20px;
+}
+
+.transaction-display {
+    margin-bottom: 1rem;
+}
+
+.transaction-input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 2rem;
+    text-align: right;
+    border: 3px solid #667eea;
+    border-radius: 15px;
+    background: #f8f9ff;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Number Pad */
+.number-pad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.num-button {
+    background: #f0f0f0;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-height: 70px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.num-button:active {
+    transform: scale(0.95);
+    background: #e0e0e0;
+}
+
+.num-button.clear {
+    background: #ff6b6b;
+    color: white;
+}
+
+.num-button.backspace {
+    background: #ffa94d;
+    color: white;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.button-add, .button-remove {
+    padding: 1rem;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 60px;
+    color: white;
+}
+
+.button-add {
+    background: #51cf66;
+}
+
+.button-add:active:not(:disabled) {
+    background: #40c057;
+}
+
+.button-remove {
+    background: #ff6b6b;
+}
+
+.button-remove:active:not(:disabled) {
+    background: #fa5252;
+}
+
+.button-add:disabled, .button-remove:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Confirmation Section */
+.confirm-section {
+    background: #fff3bf;
+    border: 3px solid #ffd43b;
+    border-radius: 15px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.confirm-section.hidden {
+    display: none;
+}
+
+.confirm-section p {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.confirm-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+
+.button-confirm, .button-cancel {
+    padding: 0.75rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    min-height: 50px;
+}
+
+.button-confirm {
+    background: #51cf66;
+    color: white;
+}
+
+.button-confirm:active {
+    background: #40c057;
+}
+
+.button-cancel {
+    background: #868e96;
+    color: white;
+}
+
+.button-cancel:active {
+    background: #6c757d;
+}
+
+/* Recent Transactions */
+.recent-transactions {
+    margin-top: 1.5rem;
+}
+
+.recent-transactions h3 {
+    color: #667eea;
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+}
+
+.transaction-item {
+    background: #f8f9ff;
+    padding: 0.75rem;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.transaction-item.add {
+    border-left: 4px solid #51cf66;
+}
+
+.transaction-item.remove {
+    border-left: 4px solid #ff6b6b;
+}
+
+.transaction-item .amount {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.transaction-item.add .amount {
+    color: #51cf66;
+}
+
+.transaction-item.remove .amount {
+    color: #ff6b6b;
+}
+
+.transaction-item .time {
+    font-size: 0.85rem;
+    color: #868e96;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h3 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.modal-content p {
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.modal-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+
+.button-danger, .button-secondary {
+    padding: 0.75rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    min-height: 50px;
+}
+
+.button-danger {
+    background: #ff6b6b;
+    color: white;
+}
+
+.button-danger:active {
+    background: #fa5252;
+}
+
+.button-secondary {
+    background: #e9ecef;
+    color: #333;
+}
+
+.button-secondary:active {
+    background: #dee2e6;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: white;
+}
+
+.empty-state h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* Utility */
+.hidden {
+    display: none !important;
+}
+
+/* Responsive adjustments for larger screens */
+@media (min-width: 768px) {
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .page {
+        max-width: 500px;
+        width: 100%;
+        box-shadow: 0 10px 50px rgba(0, 0, 0, 0.2);
+        border-radius: 20px;
+        overflow: hidden;
+    }
+}
