@@ -2,6 +2,10 @@
 
 A simple, mobile-first point tracking app for rewarding children's behavior and activities.
 
+## Try It Now
+
+**No installation required!** Use the app directly at: https://asocpro.github.io/point-tracker/
+
 ## Features
 
 - **Track Multiple Children**: Add unlimited children with custom colors
